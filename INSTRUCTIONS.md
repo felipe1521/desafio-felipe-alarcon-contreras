@@ -28,63 +28,31 @@ docker compose version
 git --version
 ```
 
-Docker debe estar en ejecución antes de continuar.
+**Docker debe estar en ejecución antes de continuar.**
 
 ---
 
 ## 2. Clonar el Repositorio
 
 ```bash
-git clone <REPOSITORY_URL>
-cd <PROJECT_ROOT>
+git clone https://github.com/felipe1521/desafio-felipe-alarcon-contreras.git
+cd desafio-felipe-alarcon-contreras
 ```
 
 Estructura esperada del proyecto:
 
 ```text
-project-root/
+desafio-felipe-alarcon-contreras/
 ├── docker-compose.yml
-├── backend/
+├── back-end/
 │   └── Dockerfile
-└── frontend/
+└── front-end/
     └── Dockerfile
 ```
 
 ---
 
-## 3. Variables de Entorno (Frontend)
-
-Crear el siguiente archivo dentro del directorio frontend:
-
-```bash
-frontend/.env
-```
-
-Agregar:
-
-```env
-VITE_API_URL=http://localhost:8080
-```
-
-Este valor permite que el navegador se comunique correctamente con el contenedor del backend.
-
----
-
-## 4. Configuración Backend (CORS)
-
-Asegúrese de que Spring Boot permita solicitudes desde el frontend.
-
-Ejemplo (a nivel de Controller):
-
-```java
-@CrossOrigin(origins = "http://localhost:5173")
-```
-
-También puede configurarse de forma global si se prefiere.
-
----
-
-## 5. Construir y Levantar Contenedores
+## 3. Construir y Levantar Contenedores
 
 Desde la raíz del proyecto:
 
@@ -100,7 +68,7 @@ Este comando realizará:
 
 ---
 
-## 6. Acceso a la Aplicación
+## 4. Acceso a la Aplicación
 
 Frontend:
 
@@ -111,7 +79,7 @@ http://localhost:5173
 API Backend:
 
 ```text
-http://localhost:8080/api
+http://localhost:8080/api/usuarios
 ```
 
 Consola H2 (si está habilitada):
@@ -122,7 +90,7 @@ http://localhost:8080/h2-console
 
 ---
 
-## 7. Detener Contenedores
+## 5. Detener Contenedores
 
 ```bash
 docker compose down
@@ -130,7 +98,7 @@ docker compose down
 
 ---
 
-## 8. Reconstruir Después de Cambios
+## 6. Reconstruir Después de Cambios
 
 Si se modifica código o variables de entorno:
 
@@ -141,35 +109,7 @@ docker compose up --build
 
 ---
 
-## 9. Comandos Docker Útiles
-
-Ver contenedores en ejecución:
-
-```bash
-docker ps
-```
-
-Ver logs generales:
-
-```bash
-docker compose logs -f
-```
-
-Logs solo del backend:
-
-```bash
-docker compose logs -f backend
-```
-
-Logs solo del frontend:
-
-```bash
-docker compose logs -f frontend
-```
-
----
-
-## 10. Problemas Comunes
+## 7. Problemas Comunes
 
 ### Docker Engine no está en ejecución
 Error de ejemplo:
@@ -187,8 +127,8 @@ Solución:
 ### Errores CORS
 
 Verificar que:
-- El backend permita el origen `http://localhost:5173`
-- El frontend utilice `http://localhost:8080` como URL de API
+- El back-end permita el origen `http://localhost:5173`
+- El front-end utilice `http://localhost:8080` como URL de API
 
 ---
 
@@ -205,18 +145,7 @@ Detener aplicaciones en conflicto o cambiar los puertos.
 
 ---
 
-## 11. Limpieza del Entorno Docker (Opcional)
-
-Si los contenedores presentan comportamientos inesperados:
-
-```bash
-docker compose down -v
-docker system prune -a
-```
-
----
-
-## 12. Arquitectura de Ejecución Esperada
+## 8. Arquitectura de Ejecución Esperada
 
 ```text
 Navegador
@@ -230,7 +159,7 @@ Base de Datos H2
 
 ---
 
-## 13. Notas para Desarrolladores
+## 9. Notas para Desarrolladores
 
 - No se requiere IDE.
 - Todas las operaciones se realizan mediante terminal.
